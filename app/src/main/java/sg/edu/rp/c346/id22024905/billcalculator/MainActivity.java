@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
         tbSVS.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-                String stringResponse = totalDisplay.getText().toString();
                 String Amt = etAmt.getText().toString();
                 double a = Double.parseDouble(Amt);
                 String Pax = etPax.getText().toString();
@@ -50,22 +49,20 @@ public class MainActivity extends AppCompatActivity {
                 double totalBill;
                 if(isChecked){
                     svs += 1.1;
-                    totalBill = (a * svs * d)/p;
-                } else{
-                    totalBill = a * d/p;
                 }
 
+            }
+        });
 
+        tbGST.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
 
-
-
-
-
-
-
-
-
+        btSplit.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
 
             }
         });
