@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -19,10 +20,11 @@ public class MainActivity extends AppCompatActivity {
     EditText etDisc;
     Button btSplit;
     Button btReset;
-    Button btCalculate;
     TextView totalDisplay;
     TextView eachDisplay;
-    RadioButton rdPaymentMth;
+    RadioGroup rdPaymentMth;
+    RadioButton rdCash;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         btReset = findViewById(R.id.buttonReset);
         totalDisplay = findViewById(R.id.showTextBill);
         eachDisplay = findViewById(R.id.showEachPay);
-
+        rdPaymentMth = findViewById(R.id.radioPaymentMethod);
+        rdCash = findViewById(R.id.radioButtonCash);
 
 
         btSplit.setOnClickListener(new View.OnClickListener(){
@@ -69,9 +72,13 @@ public class MainActivity extends AppCompatActivity {
                 }
                 totalDisplay.setText("Total bill: " + totalBill);
 
-
                 eachtoPay = totalBill/p;
-                eachDisplay.setText("Each pays: " + String.format("%.2f", eachtoPay));
+                if(rdCash.isChecked()){
+                    eachDisplay.setText("Each pays: " + String.format("%.2f", eachtoPay) + " in cash");
+                }  else{
+                    eachDisplay.setText("Each pays: " + String.format("%.2f", eachtoPay) + " via PayNow  to 912345678");
+                }
+
 
 
 
