@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     TextView eachDisplay;
     RadioGroup rdPaymentMth;
     RadioButton rdCash;
+    RadioButton rdPaynow;
 
 
     @Override
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         eachDisplay = findViewById(R.id.showEachPay);
         rdPaymentMth = findViewById(R.id.radioPaymentMethod);
         rdCash = findViewById(R.id.radioButtonCash);
+        btReset = findViewById(R.id.buttonReset);
+        rdPaynow = findViewById(R.id.radioButtonPaynow);
 
 
         btSplit.setOnClickListener(new View.OnClickListener(){
@@ -59,10 +62,10 @@ public class MainActivity extends AppCompatActivity {
                 double eachtoPay = 0;
                 if(tbSVS.isChecked() && tbGST.isChecked()){
                     svs = a * 0.1;
-                    gst = a * 0.07;
-                    totalBill = svs + gst + (1-d/100)*a;
+                    gst = a * 0.08;
+                    totalBill = (svs + gst + a) * (1-d/100);
                } else if(tbGST.isChecked()){
-                    gst = a * 0.07;
+                    gst = a * 0.08;
                     totalBill = gst + (1-d/100)*a;
                 } else if(tbSVS.isChecked()){
                     svs = a * 0.1;
@@ -75,14 +78,21 @@ public class MainActivity extends AppCompatActivity {
                 eachtoPay = totalBill/p;
                 if(rdCash.isChecked()){
                     eachDisplay.setText("Each pays: " + String.format("%.2f", eachtoPay) + " in cash");
-                }  else{
+                } else{
                     eachDisplay.setText("Each pays: " + String.format("%.2f", eachtoPay) + " via PayNow  to 912345678");
                 }
+            }
+        });
 
-
-
-
-
+        btReset.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v) {
+                etAmt.setText("");
+                etPax.setText("");
+                etDisc.setText("");
+                tbGST.setChecked(false);
+                tbSVS.setChecked(false);
+                rdCash.setChecked(false);
+                rdPaynow.setChecked(false);
             }
         });
 
