@@ -12,4 +12,9 @@
     <string name="reset">RESET</string>
     <string name="gst">GST</string>
     <string name="no_gst">NO GST</string>
+    <string name="calculate">Calculate</string>
+    <string name="no_gst_toggle">NO GST</string>
+    <string name="gst_toggle">GST</string>
+    <string name="no_svs_toggle">NO SVS</string>
+    <string name="svs_toggle">SVS</string>
 </resources>

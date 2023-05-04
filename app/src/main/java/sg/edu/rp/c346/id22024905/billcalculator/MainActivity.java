@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -18,9 +19,11 @@ public class MainActivity extends AppCompatActivity {
     EditText etDisc;
     Button btSplit;
     Button btReset;
-
+    Button btCalculate;
     TextView totalDisplay;
     TextView eachDisplay;
+    RadioButton rdPaymentMth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,36 +39,46 @@ public class MainActivity extends AppCompatActivity {
         totalDisplay = findViewById(R.id.showTextBill);
         eachDisplay = findViewById(R.id.showEachPay);
 
-        tbSVS.setOnClickListener(new View.OnClickListener(){
+
+
+        btSplit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
+
                 String Amt = etAmt.getText().toString();
                 double a = Double.parseDouble(Amt);
                 String Pax = etPax.getText().toString();
-                double p = Double.parseDouble(Pax);
+                int p = Integer.parseInt(Pax);
                 String Disc = etDisc.getText().toString();
                 double d = Double.parseDouble(Disc);
-                boolean isChecked = tbSVS.isChecked();
                 double svs = 0;
-                double totalBill;
-                if(isChecked){
-                    svs += 1.1;
+                double gst = 0;
+                double totalBill = 0;
+                double eachtoPay = 0;
+                if(tbSVS.isChecked() && tbGST.isChecked()){
+                    svs = a * 0.1;
+                    gst = a * 0.07;
+                    totalBill = svs + gst + (1-d/100)*a;
+               } else if(tbGST.isChecked()){
+                    gst = a * 0.07;
+                    totalBill = gst + (1-d/100)*a;
+                } else if(tbSVS.isChecked()){
+                    svs = a * 0.1;
+                    totalBill = svs + (1-d/100)*a;
+                } else{
+                    totalBill = (1-d/100)*a;
                 }
+                totalDisplay.setText("Total bill: " + totalBill);
+
+
+                eachtoPay = totalBill/p;
+                eachDisplay.setText("Each pays: " + String.format("%.2f", eachtoPay));
+
+
+
 
             }
         });
 
-        tbGST.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        btSplit.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-
-            }
-        });
 
     }
 }

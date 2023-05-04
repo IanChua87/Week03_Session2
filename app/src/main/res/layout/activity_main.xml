@@ -48,8 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/togglebutton"
-            android:textOff="@string/no_svs"
-            android:textOn="@string/svs" />
+            android:textOff="@string/svs_toggle"
+            android:textOn="@string/no_svs_toggle" />
 
         <ToggleButton
             android:id="@+id/toggleButtonGST"
@@ -57,8 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/gstButton"
-            android:textOff="@string/no_gst"
-            android:textOn="@string/gst" />
+            android:textOff="@string/gst_toggle"
+            android:textOn="@string/no_gst_toggle" />
 
 
 
@@ -82,6 +82,7 @@
         android:inputType="number" />
 
     <RadioGroup
+        android:id="@+id/radioPaymentMethod"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -122,12 +123,14 @@
     <TextView
         android:id="@+id/showTextBill"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16sp" />
 
     <TextView
         android:id="@+id/showEachPay"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16sp" />
 
 
 </LinearLayout>
