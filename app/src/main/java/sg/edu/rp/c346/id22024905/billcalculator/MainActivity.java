@@ -47,9 +47,10 @@ public class MainActivity extends AppCompatActivity {
         rdPaynow = findViewById(R.id.radioButtonPaynow);
 
 
+
+
         btSplit.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
-
                 String Amt = etAmt.getText().toString();
                 double a = Double.parseDouble(Amt);
                 String Pax = etPax.getText().toString();
@@ -58,21 +59,26 @@ public class MainActivity extends AppCompatActivity {
                 double d = Double.parseDouble(Disc);
                 double svs = 0;
                 double gst = 0;
-                double totalBill = 0;
+                double discPrice = 0;
                 double eachtoPay = 0;
+                double totalBill = 0;
 
                 if(tbSVS.isChecked() && tbGST.isChecked()){
-                    svs = a * 0.1;
-                    gst = a * 0.08;
-                    totalBill = (svs + gst + a) * (1-d/100);
-               } else if(tbGST.isChecked()){
-                    gst = a * 0.08;
-                    totalBill = gst + (1-d/100)*a;
+                    discPrice = (1-d/100) * a;
+                    svs = discPrice * 0.1;
+                    gst = discPrice * 0.08;
+                    totalBill = discPrice + svs + gst;
+                } else if(tbGST.isChecked()){
+                    discPrice = (1-d/100) * a;
+                    gst = discPrice * 0.08;
+                    totalBill = discPrice + gst;
                 } else if(tbSVS.isChecked()){
-                    svs = a * 0.1;
-                    totalBill = svs + (1-d/100)*a;
+                    discPrice = (1-d/100) * a;
+                    svs = discPrice * 0.1;
+                    totalBill = discPrice + svs;
                 } else{
-                    totalBill = (1-d/100)*a;
+                    discPrice = (1-d/100) * a;
+                    totalBill = discPrice;
                 }
 
                 totalDisplay.setText("Total bill: " + totalBill);
