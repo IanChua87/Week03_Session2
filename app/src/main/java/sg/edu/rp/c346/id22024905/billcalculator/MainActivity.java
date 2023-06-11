@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 double gst = 0;
                 double totalBill = 0;
                 double eachtoPay = 0;
+
                 if(tbSVS.isChecked() && tbGST.isChecked()){
                     svs = a * 0.1;
                     gst = a * 0.08;
@@ -73,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 } else{
                     totalBill = (1-d/100)*a;
                 }
+
                 totalDisplay.setText("Total bill: " + totalBill);
 
                 eachtoPay = totalBill/p;
